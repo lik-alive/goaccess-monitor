@@ -1,0 +1,21 @@
+# Install the dependencies
+sudo apt install -y libncursesw5-dev libgeoip-dev libtokyocabinet-dev build-essential libmaxminddb0 libmaxminddb-dev mmdb-bin
+
+# Install an actual version of the GoAccess
+wget https://tar.goaccess.io/goaccess-1.6.5.tar.gz
+tar -xzvf goaccess-1.6.5.tar.gz
+cd goaccess-1.6.5/
+./configure --enable-utf8 --enable-geoip=mmdb
+make
+sudo make install
+
+# Check version
+goaccess --version
+
+# Edit config file
+goaccess --dcf
+sudo nano /etc/goaccess/goaccess.conf
+# Uncomment
+time-format %H:%M:%S
+date-format %d/%b/%Y
+log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
