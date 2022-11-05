@@ -19,3 +19,6 @@ sudo nano /etc/goaccess/goaccess.conf
 time-format %H:%M:%S
 date-format %d/%b/%Y
 log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
+
+# Change folder owner to allow creating reports
+sudo chown user:www-data ./
