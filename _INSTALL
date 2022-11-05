@@ -14,11 +14,23 @@ goaccess --version
 
 # Edit config file
 goaccess --dcf
-sudo nano /etc/goaccess/goaccess.conf
+sudo nano /usr/local/etc/goaccess/goaccess.conf
 # Uncomment
 time-format %H:%M:%S
 date-format %d/%b/%Y
 log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
+# Uncomment closed panels
+enable-panel REFERRERS
+enable-panel KEYPHRASES
+enable-panel GEO_LOCATION
+
 
 # Change folder owner to allow creating reports
 sudo chown user:www-data ./
+
+# Download IP to Location data (current version at https://db-ip.com)
+wget https://download.db-ip.com/free/dbip-country-lite-2022-11.mmdb.gz
+gunzip dbip-country-lite-2022-11.mmdb.gz
+# Cities are currently unavailable in GoAccess Dashboard (may change in the future)
+wget https://download.db-ip.com/free/dbip-city-lite-2022-11.mmdb.gz
+gunzip dbip-city-lite-2022-11.mmdb.gz
